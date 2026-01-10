@@ -1,0 +1,71 @@
+#!/bin/bash
+# CIS 129 Project 2
+
+
+display_header() {
+    local outfile="$1"
+    {
+        echo "*******************************************"
+        echo "CIS 129 Project 2"
+        echo "*   Name: $(whoami)"
+        echo "* Current Semester: Fall 2025"
+        echo "* Section: CIS 129-01"
+        echo "*   Date: $(date)"
+        echo "*"
+        echo "*******************************************"
+        echo
+    } >> "$outfile"
+}
+
+# Input data file
+DATAFILE="project2.input"
+
+# Ask how to sort the data
+echo "How would you like the output to be sorted? (author / title / isbn)"
+read -r output_sorted
+
+# Determine output file and sort key
+case "$output_sorted" in
+    author)
+        outfile="project2_author.out"
+        sort_key=1
+        ;;
+    title)
+        outfile="project2_title.out"
+        sort_key=2
+        ;;
+    isbn)
+        outfile="project2_isbn.out"
+        sort_key=3
+        ;;
+    *)
+        echo "Invalid option. Choose: author, title, or isbn."
+        exit 1
+        ;;
+esac
+# Function to format ISBN properly
+format_isbn() {
+    local isbn="$1"
+    echo "${isbn:0:3}-${isbn:3:1}-${isbn:4:2}-${isbn:6:6}-${isbn:12:1}"
+}
+
+# Display header
+display_header "$outfile"
+
+# Write table headers
+{
+    printf "%-20s %-25s %-20s\n" "Author" "Book Title" "ISBN"
+    printf "%-20s %-25s %-20s\n" "******" "**********" "****"
+} >> "$outfile"
+
+# Sort and output data with formatting
+sort -t, -k"$sort_key","$sort_key" "$DATAFILE" | while IFS=',' read -r author title isbn; do
+    formatted_isbn=$(format_isbn "$isbn")
+    printf "%-20s %-25s %-20s\n" "$author" "$title" "$formatted_isbn"
+done >> "$outfile"
+
+echo
+echo "Data sorted by '$output_sorted' and saved to '$outfile'"
+
+exit 0
+
