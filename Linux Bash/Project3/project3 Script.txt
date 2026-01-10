@@ -1,0 +1,46 @@
+ibseydou@cislinux:~$ vi project3.sh
+# Function to display student header information
+
+outfile=project3.out
+
+display_header() {
+    echo "*******************************************" > $outfile
+    echo "*   Ibseydou" >> $outfile
+    echo "*   Username:  $(whoami)" >> $outfile
+    echo "*   Date:  $(date)" >> $outfile
+    echo "*   Assignment:  project3" >> $outfile
+    echo "*******************************************" >> $outfile
+}
+
+# Call the header function
+display_header
+echo >> $outfile
+echo >> $outfile
+
+
+echo -e "Olympic Sport \tEvent\t\tCountry of Gold Meal Winner">> $outfile
+echo -e "==============\t=====\t\t==========================" >> $outfile
+
+
+
+while read category code
+do
+        echo -e "$category \c" >> $outfile
+        while read code2 event
+        do
+
+                if [ "$code" = "$code2" ]
+then
+    country=$(grep -i "$event" project3-3.input | cut -f 2)
+
+    echo -e "\t$event\t\t\t$country\c" >> $outfile
+    echo -e "\n\t\c" >> $outfile
+
+fi
+
+
+        done < project3-2.input
+
+        echo -e "\n***********************************************" >> $outfile
+
+done < project3-1.input
