@@ -1,0 +1,235 @@
+# User info
+echo "**************************************" > project1.out
+
+echo "" >> project1.out
+
+echo "CIS 129 Project 1 " >> project1.out
+
+echo "Seydou Ibrahim" >> project1.out
+
+echo " $(date)" >> project1.out
+
+echo "*************************************" >> project1.out
+echo "" >> project1.out
+
+#  UsingID and GroupID
+echo "User and Grou ID ">> project1.out
+
+echo "" >>project1.out
+echo "****************************************">>project1.out
+
+id >> project1.out
+
+
+echo "">> project1.out
+
+echo "******************************************">> project1.out
+
+
+# Unix log Username
+echo "Unix Username is ">> project1.out
+
+whoami >> project1.out
+echo "">> project1.out
+echo "" >> project1.out
+
+echo "*******************************************">> project1.out
+
+
+# Users logged in the systems
+
+echo "the Numbers of Users currenttly logged in are " >> project1.out
+
+who -b >> project1.out
+
+echo "" >> project1.out
+echo "">> project1.out
+echo "**********************************************" >> project1.out
+
+# Ensure alias expansion works in scripts
+shopt -s expand_aliases
+
+# Create alias 'n' to count users
+alias n='who -q | tail -n 1 | awk "{print \$2}"'
+
+# Use the alias to display the number of users currently logged in
+
+echo "The number of users currently logged in is: $(n)" >> project1.out
+
+echo "" >> project1.out
+echo "" >> project1.out
+
+echo "**********************************************">> project1.out
+
+# show dir in serverse order
+
+echo "Show dir in reverse order">> project1.out
+
+echo "" >>project1.out
+
+echo "" >> project1.ou
+
+dir -r >> project1.out
+
+echo "" >> project1.out
+
+echo "************************************************">> project1.out
+
+echo "">> project1.out
+
+# Home Directory path
+echo "" >> project1.out
+
+echo "the home directory is :" $HOME >> project1.out
+
+echo "" >> project1.out
+
+echo "***********************************************">> project1.out
+
+# the last time systen was booted
+echo "last time system was booted is :" >> project1.out
+
+who -b >> project1.out
+echo "">>project1.out
+
+echo "***********************************************">> project1.out
+echo "" >> project1.out
+
+# My birth mounth and year
+echo "my brith month and year are ">> project1.out
+echo"">>project1.out
+
+cal 10 1997 >> project1.out
+
+echo "***********************************************">> project1.out
+
+echo"" >>project1.out
+
+#Translate every 1-a b-2 c-3
+echo "">>project1.out
+
+cal 10 1997 | tr '123' 'abc' >> project1.out
+
+echo "**********************************************">> project1.out
+
+echo "" >>project1.out
+
+# unising the  paste cmd to diplay both cal
+echo"">>project1.out
+
+
+paste <(cal 10 1997 | tr '123' 'abc') <(cal 10 1997) >> project1.out
+
+echo "" >> project1.out
+
+echo "************************************************">>project1.out
+
+# displasing three current charac of the month
+echo "Cuurent motnh in 3 character">>project1.out
+
+date |cut -c 5-7 >> project1.out
+
+echo "">> project1.out
+
+echo "***********************************************">> project1.out
+
+echo "" >> project1.out
+
+# show 3 lines of etc/passwd file
+
+echo "Three lines of etc/passwd file ">> project1.out
+head -n 3 /etc/passwd >> project1.out
+
+echo "" >> project1.out
+
+echo "**********************************************">> project1.out
+
+echo "" >> project1.out
+
+# sow the first 3 lines of the etc/passwd file where # is the numberline.
+
+head -n 3 /etc/passwd | nl -ba |sed 's/#:/**>/' >> project1.out
+
+echo "***********************************************">>project1.out
+
+echo "">> project1.out
+
+# Find the number charc int etc/passwd
+
+echo"">> project1.out
+
+wc -m  /etc/passwd >>project1.out
+echo "" >> project.out
+echo "number character in the file ">>project1.out
+
+echo "">> project1.out
+
+echo "***********************************************">>project1.out
+
+
+# show the first 5 lines of etc/group in Hexadecimal
+echo "this are the 5 Lines of etc/group File ">>project1.out
+head -n 5 /etc/group | xxd >>project1.out
+
+echo "">> project1.out
+
+echo "*********************************************">>project1.out
+echo >> project1.out
+
+# show the last 15 users in the system
+echo "the last 15 Users are">> project1.out
+
+echo"" >> project1.out
+
+last -n 15 >>project1.out
+echo "">>project1.out
+
+echo "*********************************************">>project1.out
+echo "">>project1.out
+                           
+                         
+# show the last 15 users in Reverse
+echo "The last 15 Users in Reverse From are ">> project1.out
+echo "" >> project1.out
+
+last -n 15 | awk '{print $1}' |sort  -r >> project1.out
+
+echo"">>project1.out
+
+echo "**********************************************">> project1.out
+
+echo "">> project1.out
+
+# User info
+
+echo "My UserName is : $USER  My shell: is $SHELL " >> project1.out
+
+echo"">>project1.out
+
+
+echo "***********************************************">> project1.out
+
+echo "">> project1.out
+
+# Create Dir called MI
+
+mkdir MICHIGAN
+
+# copy files ending with . sh from home dir to Michigan dir
+
+cp  *.sh MICHIGAN
+
+# show Michigan Dir in reverse order
+
+dir -r MICHIGAN >> project1.out
+
+echo "***********************************************">> project1.out
+
+# Remove all File in dir and exit spript correctly
+
+rm -r MICHIGAN
+
+# exit spript
+
+exit 0
+                                                                                                                                                               
